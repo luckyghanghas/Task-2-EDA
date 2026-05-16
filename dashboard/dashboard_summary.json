@@ -1,0 +1,394 @@
+{
+  "kpis": {
+    "total_orders": 248,
+    "completed_orders": 209,
+    "total_revenue": 7813182.32,
+    "avg_order_value": 37383.65,
+    "return_rate": 0.1048,
+    "cancel_rate": 0.0524
+  },
+  "monthly_revenue": [
+    {
+      "order_month": "2025-01",
+      "revenue": 435963.01
+    },
+    {
+      "order_month": "2025-02",
+      "revenue": 243839.33
+    },
+    {
+      "order_month": "2025-03",
+      "revenue": 717323.18
+    },
+    {
+      "order_month": "2025-04",
+      "revenue": 726580.65
+    },
+    {
+      "order_month": "2025-05",
+      "revenue": 821404.74
+    },
+    {
+      "order_month": "2025-06",
+      "revenue": 374965.61
+    },
+    {
+      "order_month": "2025-07",
+      "revenue": 934348.16
+    },
+    {
+      "order_month": "2025-08",
+      "revenue": 151693.85
+    },
+    {
+      "order_month": "2025-09",
+      "revenue": 996051.15
+    },
+    {
+      "order_month": "2025-10",
+      "revenue": 472066.92
+    },
+    {
+      "order_month": "2025-11",
+      "revenue": 1411316.3
+    },
+    {
+      "order_month": "2025-12",
+      "revenue": 527629.42
+    }
+  ],
+  "product_revenue": [
+    {
+      "product": "Laptop",
+      "revenue": 4673353.01,
+      "orders": 33,
+      "units": 76
+    },
+    {
+      "product": "Smartphone",
+      "revenue": 1594178.82,
+      "orders": 33,
+      "units": 71
+    },
+    {
+      "product": "Monitor",
+      "revenue": 1159674.01,
+      "orders": 41,
+      "units": 80
+    },
+    {
+      "product": "Headphones",
+      "revenue": 183659.66,
+      "orders": 37,
+      "units": 80
+    },
+    {
+      "product": "Keyboard",
+      "revenue": 121700.33,
+      "orders": 34,
+      "units": 57
+    },
+    {
+      "product": "Mouse",
+      "revenue": 80616.49,
+      "orders": 31,
+      "units": 56
+    }
+  ],
+  "region_revenue": [
+    {
+      "region": "West",
+      "revenue": 2014049.59,
+      "orders": 46
+    },
+    {
+      "region": "North",
+      "revenue": 1458974.6,
+      "orders": 42
+    },
+    {
+      "region": "East",
+      "revenue": 1456594.55,
+      "orders": 41
+    },
+    {
+      "region": "Central",
+      "revenue": 1439239.55,
+      "orders": 35
+    },
+    {
+      "region": "South",
+      "revenue": 1294837.39,
+      "orders": 42
+    },
+    {
+      "region": "Unknown",
+      "revenue": 149486.64,
+      "orders": 3
+    }
+  ],
+  "channel_revenue": [
+    {
+      "sales_channel": "Retail",
+      "revenue": 2808826.05,
+      "orders": 73
+    },
+    {
+      "sales_channel": "Online",
+      "revenue": 2804653.91,
+      "orders": 70
+    },
+    {
+      "sales_channel": "Partner",
+      "revenue": 2199702.36,
+      "orders": 66
+    }
+  ],
+  "segment_revenue": [
+    {
+      "customer_segment": "Small Business",
+      "revenue": 2445247.69,
+      "avg_order_value": 45282.36,
+      "orders": 54
+    },
+    {
+      "customer_segment": "Student",
+      "revenue": 1907198.42,
+      "avg_order_value": 33459.62,
+      "orders": 57
+    },
+    {
+      "customer_segment": "Enterprise",
+      "revenue": 1762736.49,
+      "avg_order_value": 36723.68,
+      "orders": 48
+    },
+    {
+      "customer_segment": "Professional",
+      "revenue": 1697999.72,
+      "avg_order_value": 33959.99,
+      "orders": 50
+    }
+  ],
+  "sql_results": {
+    "top_5_products_by_revenue": [
+      {
+        "product": "Laptop",
+        "revenue": 4673353.01,
+        "completed_orders": 33
+      },
+      {
+        "product": "Smartphone",
+        "revenue": 1594178.82,
+        "completed_orders": 33
+      },
+      {
+        "product": "Monitor",
+        "revenue": 1159674.01,
+        "completed_orders": 41
+      },
+      {
+        "product": "Headphones",
+        "revenue": 183659.66,
+        "completed_orders": 37
+      },
+      {
+        "product": "Keyboard",
+        "revenue": 121700.33,
+        "completed_orders": 34
+      }
+    ],
+    "monthly_revenue_trend": [
+      {
+        "order_month": "2025-01",
+        "revenue": 435963.01,
+        "completed_orders": 19
+      },
+      {
+        "order_month": "2025-02",
+        "revenue": 243839.33,
+        "completed_orders": 8
+      },
+      {
+        "order_month": "2025-03",
+        "revenue": 717323.18,
+        "completed_orders": 24
+      },
+      {
+        "order_month": "2025-04",
+        "revenue": 726580.65,
+        "completed_orders": 15
+      },
+      {
+        "order_month": "2025-05",
+        "revenue": 821404.74,
+        "completed_orders": 23
+      },
+      {
+        "order_month": "2025-06",
+        "revenue": 374965.61,
+        "completed_orders": 12
+      },
+      {
+        "order_month": "2025-07",
+        "revenue": 934348.16,
+        "completed_orders": 20
+      },
+      {
+        "order_month": "2025-08",
+        "revenue": 151693.85,
+        "completed_orders": 13
+      },
+      {
+        "order_month": "2025-09",
+        "revenue": 996051.15,
+        "completed_orders": 16
+      },
+      {
+        "order_month": "2025-10",
+        "revenue": 472066.92,
+        "completed_orders": 15
+      },
+      {
+        "order_month": "2025-11",
+        "revenue": 1411316.3,
+        "completed_orders": 20
+      },
+      {
+        "order_month": "2025-12",
+        "revenue": 527629.42,
+        "completed_orders": 24
+      }
+    ],
+    "revenue_by_region": [
+      {
+        "region": "West",
+        "revenue": 2014049.59,
+        "completed_orders": 46
+      },
+      {
+        "region": "North",
+        "revenue": 1458974.6,
+        "completed_orders": 42
+      },
+      {
+        "region": "East",
+        "revenue": 1456594.55,
+        "completed_orders": 41
+      },
+      {
+        "region": "Central",
+        "revenue": 1439239.55,
+        "completed_orders": 35
+      },
+      {
+        "region": "South",
+        "revenue": 1294837.39,
+        "completed_orders": 42
+      },
+      {
+        "region": "Unknown",
+        "revenue": 149486.64,
+        "completed_orders": 3
+      }
+    ],
+    "sales_channel_performance": [
+      {
+        "sales_channel": "Retail",
+        "revenue": 2808826.05,
+        "avg_order_value": 38477.07
+      },
+      {
+        "sales_channel": "Online",
+        "revenue": 2804653.91,
+        "avg_order_value": 40066.48
+      },
+      {
+        "sales_channel": "Partner",
+        "revenue": 2199702.36,
+        "avg_order_value": 33328.82
+      }
+    ],
+    "customer_segment_performance": [
+      {
+        "customer_segment": "Small Business",
+        "revenue": 2445247.69,
+        "customers": 44
+      },
+      {
+        "customer_segment": "Student",
+        "revenue": 1907198.42,
+        "customers": 46
+      },
+      {
+        "customer_segment": "Enterprise",
+        "revenue": 1762736.49,
+        "customers": 40
+      },
+      {
+        "customer_segment": "Professional",
+        "revenue": 1697999.72,
+        "customers": 39
+      }
+    ],
+    "return_and_cancellation_by_product": [
+      {
+        "product": "Smartphone",
+        "return_rate_pct": 18.18,
+        "cancellation_rate_pct": 6.82
+      },
+      {
+        "product": "Mouse",
+        "return_rate_pct": 13.16,
+        "cancellation_rate_pct": 5.26
+      },
+      {
+        "product": "Monitor",
+        "return_rate_pct": 8.89,
+        "cancellation_rate_pct": 0.0
+      },
+      {
+        "product": "Headphones",
+        "return_rate_pct": 8.7,
+        "cancellation_rate_pct": 10.87
+      },
+      {
+        "product": "Keyboard",
+        "return_rate_pct": 7.69,
+        "cancellation_rate_pct": 5.13
+      },
+      {
+        "product": "Laptop",
+        "return_rate_pct": 5.56,
+        "cancellation_rate_pct": 2.78
+      }
+    ],
+    "payment_mode_revenue": [
+      {
+        "payment_mode": "Upi",
+        "revenue": 2760937.75,
+        "orders": 38
+      },
+      {
+        "payment_mode": "Credit Card",
+        "revenue": 1561455.58,
+        "orders": 44
+      },
+      {
+        "payment_mode": "Net Banking",
+        "revenue": 1245129.34,
+        "orders": 42
+      },
+      {
+        "payment_mode": "Cash",
+        "revenue": 1167390.35,
+        "orders": 44
+      },
+      {
+        "payment_mode": "Debit Card",
+        "revenue": 1078269.3,
+        "orders": 41
+      }
+    ]
+  }
+}
