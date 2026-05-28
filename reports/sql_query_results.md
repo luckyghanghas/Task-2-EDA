@@ -1,135 +1,70 @@
-# SQL Query Results
+# SQL Results
 
-## Top 5 Products By Revenue
+## 01 Top Products By Revenue
 
-```sql
-SELECT product, ROUND(SUM(net_revenue), 2) AS revenue, COUNT(*) AS completed_orders
-FROM sales
-WHERE order_status = 'Completed'
-GROUP BY product
-ORDER BY revenue DESC
-LIMIT 5;
-```
+| product_name | revenue |
+| --- | --- |
+| Smart Watch | 1368209.84 |
+| Mechanical Keyboard | 899189.76 |
+| Webcam Pro | 798137.5 |
+| Bluetooth Headphones | 655422.34 |
+| Portable Speaker | 600264.0 |
 
-| product | revenue | completed_orders |
+## 02 Monthly Revenue Trend
+
+| month | revenue | orders |
 | --- | --- | --- |
-| Laptop | 4673353.01 | 33 |
-| Smartphone | 1594178.82 | 33 |
-| Monitor | 1159674.01 | 41 |
-| Headphones | 183659.66 | 37 |
-| Keyboard | 121700.33 | 34 |
+| 2025-01 | 414508.3 | 101 |
+| 2025-02 | 381797.56 | 84 |
+| 2025-03 | 253183.26 | 80 |
+| 2025-04 | 361993.81 | 88 |
+| 2025-05 | 332373.01 | 86 |
+| 2025-06 | 373196.49 | 77 |
+| 2025-07 | 397458.33 | 88 |
+| 2025-08 | 334842.66 | 94 |
+| 2025-09 | 345674.85 | 77 |
+| 2025-10 | 364085.7 | 77 |
+| 2025-11 | 330265.79 | 84 |
+| 2025-12 | 326024.85 | 87 |
+| 2026-01 | 441892.25 | 89 |
+| 2026-02 | 388410.22 | 74 |
+| 2026-03 | 282785.32 | 64 |
 
-## Monthly Revenue Trend
+## 03 Channel Performance
 
-```sql
-SELECT order_month, ROUND(SUM(net_revenue), 2) AS revenue, COUNT(*) AS completed_orders
-FROM sales
-WHERE order_status = 'Completed'
-GROUP BY order_month
-ORDER BY order_month;
-```
+| sales_channel | orders | revenue | avg_margin_pct |
+| --- | --- | --- | --- |
+| Website | 592 | 2464279.62 | 19.6 |
+| Mobile App | 456 | 2054498.79 | 20.1 |
+| Retail Store | 202 | 809713.99 | 19.8 |
 
-| order_month | revenue | completed_orders |
+## 04 Region Return Rate
+
+| region | orders | return_rate_pct |
 | --- | --- | --- |
-| 2025-01 | 435963.01 | 19 |
-| 2025-02 | 243839.33 | 8 |
-| 2025-03 | 717323.18 | 24 |
-| 2025-04 | 726580.65 | 15 |
-| 2025-05 | 821404.74 | 23 |
-| 2025-06 | 374965.61 | 12 |
-| 2025-07 | 934348.16 | 20 |
-| 2025-08 | 151693.85 | 13 |
-| 2025-09 | 996051.15 | 16 |
-| 2025-10 | 472066.92 | 15 |
-| 2025-11 | 1411316.3 | 20 |
-| 2025-12 | 527629.42 | 24 |
+| South | 320 | 7.2 |
+| North | 299 | 5.7 |
+| East | 292 | 4.1 |
+| West | 339 | 3.8 |
 
-## Revenue By Region
+## 05 Campaign Roi Proxy
 
-```sql
-SELECT region, ROUND(SUM(net_revenue), 2) AS revenue, COUNT(*) AS completed_orders
-FROM sales
-WHERE order_status = 'Completed'
-GROUP BY region
-ORDER BY revenue DESC;
-```
+| campaign | revenue | gross_profit | gross_margin_pct |
+| --- | --- | --- | --- |
+| Search Ads | 1034918.19 | 276020.3 | 26.7 |
+| Organic | 946146.16 | 198461.91 | 21.0 |
+| Referral | 904176.23 | 185194.66 | 20.5 |
+| Influencer | 809556.17 | 158623.78 | 19.6 |
+| Festive Sale | 789239.89 | 147123.38 | 18.6 |
+| Email Offer | 844455.76 | 117325.28 | 13.9 |
 
-| region | revenue | completed_orders |
+## 06 Age Group Value
+
+| age_group | customers | revenue_per_customer |
 | --- | --- | --- |
-| West | 2014049.59 | 46 |
-| North | 1458974.6 | 42 |
-| East | 1456594.55 | 41 |
-| Central | 1439239.55 | 35 |
-| South | 1294837.39 | 42 |
-| Unknown | 149486.64 | 3 |
+| 55+ | 184 | 6222.92 |
+| 35-44 | 201 | 6004.32 |
+| 18-24 | 154 | 5746.53 |
+| 25-34 | 183 | 5639.63 |
+| 45-54 | 201 | 5271.58 |
 
-## Sales Channel Performance
-
-```sql
-SELECT sales_channel, ROUND(SUM(net_revenue), 2) AS revenue, ROUND(AVG(net_revenue), 2) AS avg_order_value
-FROM sales
-WHERE order_status = 'Completed'
-GROUP BY sales_channel
-ORDER BY revenue DESC;
-```
-
-| sales_channel | revenue | avg_order_value |
-| --- | --- | --- |
-| Retail | 2808826.05 | 38477.07 |
-| Online | 2804653.91 | 40066.48 |
-| Partner | 2199702.36 | 33328.82 |
-
-## Customer Segment Performance
-
-```sql
-SELECT customer_segment, ROUND(SUM(net_revenue), 2) AS revenue, COUNT(DISTINCT customer_id) AS customers
-FROM sales
-WHERE order_status = 'Completed'
-GROUP BY customer_segment
-ORDER BY revenue DESC;
-```
-
-| customer_segment | revenue | customers |
-| --- | --- | --- |
-| Small Business | 2445247.69 | 44 |
-| Student | 1907198.42 | 46 |
-| Enterprise | 1762736.49 | 40 |
-| Professional | 1697999.72 | 39 |
-
-## Return And Cancellation By Product
-
-```sql
-SELECT product,
-       ROUND(AVG(CASE WHEN order_status = 'Returned' THEN 1.0 ELSE 0 END) * 100, 2) AS return_rate_pct,
-       ROUND(AVG(CASE WHEN order_status = 'Cancelled' THEN 1.0 ELSE 0 END) * 100, 2) AS cancellation_rate_pct
-FROM sales
-GROUP BY product
-ORDER BY return_rate_pct DESC, cancellation_rate_pct DESC;
-```
-
-| product | return_rate_pct | cancellation_rate_pct |
-| --- | --- | --- |
-| Smartphone | 18.18 | 6.82 |
-| Mouse | 13.16 | 5.26 |
-| Monitor | 8.89 | 0.0 |
-| Headphones | 8.7 | 10.87 |
-| Keyboard | 7.69 | 5.13 |
-| Laptop | 5.56 | 2.78 |
-
-## Payment Mode Revenue
-
-```sql
-SELECT payment_mode, ROUND(SUM(net_revenue), 2) AS revenue, COUNT(*) AS orders
-FROM sales
-WHERE order_status = 'Completed'
-GROUP BY payment_mode
-ORDER BY revenue DESC;
-```
-
-| payment_mode | revenue | orders |
-| --- | --- | --- |
-| Upi | 2760937.75 | 38 |
-| Credit Card | 1561455.58 | 44 |
-| Net Banking | 1245129.34 | 42 |
-| Cash | 1167390.35 | 44 |
-| Debit Card | 1078269.3 | 41 |

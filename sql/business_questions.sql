@@ -1,50 +1,54 @@
--- top_5_products_by_revenue
-SELECT product, ROUND(SUM(net_revenue), 2) AS revenue, COUNT(*) AS completed_orders
+# SQL Queries for Business Questions
+
+## 01 Top Products By Revenue
+```sql
+SELECT product_name, ROUND(SUM(revenue), 2) AS revenue
 FROM sales
-WHERE order_status = 'Completed'
-GROUP BY product
+GROUP BY product_name
 ORDER BY revenue DESC
 LIMIT 5;
+```
 
--- monthly_revenue_trend
-SELECT order_month, ROUND(SUM(net_revenue), 2) AS revenue, COUNT(*) AS completed_orders
+## 02 Monthly Revenue Trend
+```sql
+SELECT month, ROUND(SUM(revenue), 2) AS revenue, COUNT(*) AS orders
 FROM sales
-WHERE order_status = 'Completed'
-GROUP BY order_month
-ORDER BY order_month;
+GROUP BY month
+ORDER BY month;
+```
 
--- revenue_by_region
-SELECT region, ROUND(SUM(net_revenue), 2) AS revenue, COUNT(*) AS completed_orders
+## 03 Channel Performance
+```sql
+SELECT sales_channel, COUNT(*) AS orders, ROUND(SUM(revenue), 2) AS revenue,
+       ROUND(AVG(gross_margin) * 100, 1) AS avg_margin_pct
 FROM sales
-WHERE order_status = 'Completed'
-GROUP BY region
-ORDER BY revenue DESC;
-
--- sales_channel_performance
-SELECT sales_channel, ROUND(SUM(net_revenue), 2) AS revenue, ROUND(AVG(net_revenue), 2) AS avg_order_value
-FROM sales
-WHERE order_status = 'Completed'
 GROUP BY sales_channel
 ORDER BY revenue DESC;
+```
 
--- customer_segment_performance
-SELECT customer_segment, ROUND(SUM(net_revenue), 2) AS revenue, COUNT(DISTINCT customer_id) AS customers
+## 04 Region Return Rate
+```sql
+SELECT region, COUNT(*) AS orders, ROUND(AVG(returned_flag) * 100, 1) AS return_rate_pct
 FROM sales
-WHERE order_status = 'Completed'
-GROUP BY customer_segment
-ORDER BY revenue DESC;
+GROUP BY region
+ORDER BY return_rate_pct DESC;
+```
 
--- return_and_cancellation_by_product
-SELECT product,
-       ROUND(AVG(CASE WHEN order_status = 'Returned' THEN 1.0 ELSE 0 END) * 100, 2) AS return_rate_pct,
-       ROUND(AVG(CASE WHEN order_status = 'Cancelled' THEN 1.0 ELSE 0 END) * 100, 2) AS cancellation_rate_pct
+## 05 Campaign Roi Proxy
+```sql
+SELECT campaign, ROUND(SUM(revenue), 2) AS revenue, ROUND(SUM(gross_profit), 2) AS gross_profit,
+       ROUND(SUM(gross_profit) / SUM(revenue) * 100, 1) AS gross_margin_pct
 FROM sales
-GROUP BY product
-ORDER BY return_rate_pct DESC, cancellation_rate_pct DESC;
+GROUP BY campaign
+ORDER BY gross_profit DESC;
+```
 
--- payment_mode_revenue
-SELECT payment_mode, ROUND(SUM(net_revenue), 2) AS revenue, COUNT(*) AS orders
+## 06 Age Group Value
+```sql
+SELECT age_group, COUNT(DISTINCT customer_id) AS customers,
+       ROUND(SUM(revenue) / COUNT(DISTINCT customer_id), 2) AS revenue_per_customer
 FROM sales
-WHERE order_status = 'Completed'
-GROUP BY payment_mode
-ORDER BY revenue DESC;
+GROUP BY age_group
+ORDER BY revenue_per_customer DESC;
+```
+
