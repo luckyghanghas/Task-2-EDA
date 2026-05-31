@@ -39,7 +39,6 @@ README.md
 
 - **Python EDA Script**: `scripts/eda_analysis.py` - Comprehensive analysis with descriptive statistics and visualizations
 - **SQL Queries**: `sql/business_questions.sql` - 10 business intelligence queries with actual dataset columns
-- **Dashboard Visualizations**: 8 PNG charts in `dashboard/` folder for key metrics
 - **SQLite Database**: `data/sales_analysis.sqlite` - Aggregated tables from Python analysis
 - **Cleaned Dataset**: `data/sales_transactions_cleaned.csv` - Clean, production-ready transaction data
 - **Requirements**: `requirements.txt` - All Python dependencies for reproducibility
