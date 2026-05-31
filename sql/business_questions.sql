@@ -1,54 +1,120 @@
-# SQL Queries for Business Questions
+-- Task 2 Business Intelligence Queries
+-- Using actual columns from the sales_transactions_cleaned.csv dataset
 
-## 01 Top Products By Revenue
-```sql
-SELECT product_name, ROUND(SUM(revenue), 2) AS revenue
-FROM sales
+-- 1. What are the top products by revenue?
+SELECT 
+    product_name,
+    ROUND(SUM(revenue), 2) as total_revenue,
+    COUNT(*) as order_count,
+    ROUND(AVG(revenue), 2) as avg_order_value,
+    ROUND(SUM(CASE WHEN returned = 1 THEN 1 ELSE 0 END), 0) as return_count,
+    ROUND(SUM(CASE WHEN returned = 1 THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as return_rate_pct
+FROM sales_data
 GROUP BY product_name
-ORDER BY revenue DESC
-LIMIT 5;
-```
+ORDER BY total_revenue DESC;
 
-## 02 Monthly Revenue Trend
-```sql
-SELECT month, ROUND(SUM(revenue), 2) AS revenue, COUNT(*) AS orders
-FROM sales
-GROUP BY month
-ORDER BY month;
-```
+-- 2. How is revenue trending month by month?
+SELECT 
+    strftime('%Y-%m', order_date) as year_month,
+    ROUND(SUM(revenue), 2) as monthly_revenue,
+    COUNT(*) as order_count,
+    ROUND(AVG(revenue), 2) as avg_order_value,
+    ROUND(SUM(revenue - cost), 2) as gross_profit
+FROM sales_data
+GROUP BY strftime('%Y-%m', order_date)
+ORDER BY year_month;
 
-## 03 Channel Performance
-```sql
-SELECT sales_channel, COUNT(*) AS orders, ROUND(SUM(revenue), 2) AS revenue,
-       ROUND(AVG(gross_margin) * 100, 1) AS avg_margin_pct
-FROM sales
+-- 3. Which sales channel performs best?
+SELECT 
+    sales_channel,
+    ROUND(SUM(revenue), 2) as total_revenue,
+    COUNT(*) as order_count,
+    ROUND(AVG(revenue), 2) as avg_order_value,
+    ROUND(SUM(revenue - cost), 2) as gross_profit,
+    ROUND(SUM(CASE WHEN returned = 1 THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as return_rate_pct
+FROM sales_data
 GROUP BY sales_channel
-ORDER BY revenue DESC;
-```
+ORDER BY total_revenue DESC;
 
-## 04 Region Return Rate
-```sql
-SELECT region, COUNT(*) AS orders, ROUND(AVG(returned_flag) * 100, 1) AS return_rate_pct
-FROM sales
+-- 4. Which region has the highest return rate and lowest return rate?
+SELECT 
+    region,
+    ROUND(SUM(revenue), 2) as total_revenue,
+    COUNT(*) as order_count,
+    ROUND(SUM(CASE WHEN returned = 1 THEN 1 ELSE 0 END), 0) as return_count,
+    ROUND(SUM(CASE WHEN returned = 1 THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as return_rate_pct
+FROM sales_data
 GROUP BY region
 ORDER BY return_rate_pct DESC;
-```
 
-## 05 Campaign Roi Proxy
-```sql
-SELECT campaign, ROUND(SUM(revenue), 2) AS revenue, ROUND(SUM(gross_profit), 2) AS gross_profit,
-       ROUND(SUM(gross_profit) / SUM(revenue) * 100, 1) AS gross_margin_pct
-FROM sales
+-- 5. Which campaign creates the strongest gross profit?
+SELECT 
+    campaign,
+    ROUND(SUM(revenue), 2) as total_revenue,
+    COUNT(*) as order_count,
+    ROUND(SUM(revenue - cost), 2) as gross_profit,
+    ROUND(SUM(revenue - cost) * 100.0 / SUM(revenue), 2) as profit_margin_pct,
+    ROUND(SUM(CASE WHEN returned = 1 THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as return_rate_pct
+FROM sales_data
 GROUP BY campaign
 ORDER BY gross_profit DESC;
-```
 
-## 06 Age Group Value
-```sql
-SELECT age_group, COUNT(DISTINCT customer_id) AS customers,
-       ROUND(SUM(revenue) / COUNT(DISTINCT customer_id), 2) AS revenue_per_customer
-FROM sales
+-- 6. Which customer age group has the highest revenue per customer?
+SELECT 
+    age_group,
+    COUNT(DISTINCT customer_id) as unique_customers,
+    COUNT(*) as order_count,
+    ROUND(SUM(revenue), 2) as total_revenue,
+    ROUND(SUM(revenue) / COUNT(DISTINCT customer_id), 2) as revenue_per_customer,
+    ROUND(AVG(revenue), 2) as avg_order_value,
+    ROUND(SUM(CASE WHEN returned = 1 THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as return_rate_pct
+FROM sales_data
 GROUP BY age_group
 ORDER BY revenue_per_customer DESC;
-```
 
+-- 7. Product Category Performance
+SELECT 
+    category,
+    ROUND(SUM(revenue), 2) as total_revenue,
+    COUNT(*) as order_count,
+    ROUND(AVG(revenue), 2) as avg_order_value,
+    ROUND(SUM(revenue - cost), 2) as gross_profit,
+    ROUND(SUM(revenue - cost) * 100.0 / SUM(revenue), 2) as profit_margin_pct,
+    ROUND(SUM(CASE WHEN returned = 1 THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as return_rate_pct
+FROM sales_data
+GROUP BY category
+ORDER BY total_revenue DESC;
+
+-- 8. Payment Method Analysis
+SELECT 
+    payment_method,
+    ROUND(SUM(revenue), 2) as total_revenue,
+    COUNT(*) as order_count,
+    ROUND(AVG(revenue), 2) as avg_order_value,
+    ROUND(SUM(CASE WHEN returned = 1 THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as return_rate_pct
+FROM sales_data
+GROUP BY payment_method
+ORDER BY total_revenue DESC;
+
+-- 9. Customer Rating Impact on Returns
+SELECT 
+    customer_rating,
+    COUNT(*) as order_count,
+    ROUND(SUM(CASE WHEN returned = 1 THEN 1 ELSE 0 END), 0) as return_count,
+    ROUND(SUM(CASE WHEN returned = 1 THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as return_rate_pct,
+    ROUND(AVG(revenue), 2) as avg_order_value
+FROM sales_data
+GROUP BY customer_rating
+ORDER BY customer_rating DESC;
+
+-- 10. Sales Channel by Region - Performance Matrix
+SELECT 
+    region,
+    sales_channel,
+    ROUND(SUM(revenue), 2) as total_revenue,
+    COUNT(*) as order_count,
+    ROUND(AVG(revenue), 2) as avg_order_value,
+    ROUND(SUM(CASE WHEN returned = 1 THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) as return_rate_pct
+FROM sales_data
+GROUP BY region, sales_channel
+ORDER BY total_revenue DESC;
