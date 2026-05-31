@@ -14,14 +14,7 @@ data/
   sales_analysis.sqlite
 dashboard/
   eda_charts.html
-  top_products_by_revenue.png
-  revenue_trending.png
-  channel_performance.png
-  region_analysis.png
-  campaign_performance.png
-  age_group_analysis.png
-  category_analysis.png
-  rating_return_analysis.png
+  sales_dashboard_mockup.xlsx
 reports/
   eda_report.md
   sql_query_results.md
